@@ -236,8 +236,8 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { getDefaultDevice, getDevice, TrafficCenter } = nativeBinding
+const { Traffic, getDefaultDevice, getDevice } = nativeBinding
 
+module.exports.Traffic = Traffic
 module.exports.getDefaultDevice = getDefaultDevice
 module.exports.getDevice = getDevice
-module.exports.TrafficCenter = TrafficCenter

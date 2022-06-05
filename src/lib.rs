@@ -6,8 +6,8 @@ use netraffic::{
 #[macro_use]
 extern crate napi_derive;
 
-#[napi]
-struct TrafficCenter {
+#[napi(js_name = "Traffic")]
+struct _Traffic {
   traffic: Traffic,
 }
 
@@ -18,10 +18,10 @@ pub struct _Snapshot {
 }
 
 #[napi]
-impl TrafficCenter {
+impl _Traffic {
   #[napi(constructor)]
   pub fn new() -> Self {
-    TrafficCenter {
+    _Traffic {
       traffic: Traffic::new(),
     }
   }
