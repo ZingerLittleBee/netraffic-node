@@ -1,7 +1,11 @@
 import test from 'ava'
 
-import { sum } from '../index.js'
+import { getDefaultDevice, getDevice } from '../index.js'
 
-test('sum from native', (t) => {
-  t.is(sum(1, 2), 3)
+test('getDevice', t => {
+    t.not(getDefaultDevice(), '')
+})
+
+test('getDefaultDevice', t => {
+    t.assert(getDevice().length > 0)
 })
