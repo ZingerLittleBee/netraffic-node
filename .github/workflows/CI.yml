@@ -131,6 +131,8 @@ jobs:
               shell: bash
             - name: Install dependencies
               run: yarn install --ignore-scripts --frozen-lockfile --registry https://registry.npmjs.org --network-timeout 300000
+            - name: Setup tmate session
+              uses: mxschmitt/action-tmate@v3
             - name: Build in docker
               uses: addnab/docker-run-action@v3
               if: ${{ matrix.settings.docker }}
