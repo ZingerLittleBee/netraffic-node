@@ -33,20 +33,21 @@ jobs:
                     - host: ubuntu-latest
                       target: x86_64-unknown-linux-gnu
                       docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-debian
-                      setup: |
-                          sudo apt-get update
-                          sudo apt-get install libpcap-dev -y
                       build: |-
                           set -e &&
+                          sudo apt-get update -y &&
+                          sudo apt-get install libpcap-dev -y &&
                           yarn build --target x86_64-unknown-linux-gnu &&
                           strip *.node
                     - host: ubuntu-latest
                       target: x86_64-unknown-linux-musl
                       docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-alpine
-                      setup: |
-                          sudo apt-get update
-                          sudo apt-get install libpcap-dev -y
-                      build: set -e && yarn build && strip *.node
+                      build: |-
+                          set -e &&
+                          sudo apt-get update -y &&
+                          sudo apt-get install libpcap-dev -y &&
+                          yarn build &&
+                          strip *.node
                     - host: macos-latest
                       target: aarch64-apple-darwin
                       build: |
@@ -60,11 +61,10 @@ jobs:
                     - host: ubuntu-latest
                       target: aarch64-unknown-linux-gnu
                       docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-debian-aarch64
-                      setup: |
-                          sudo apt-get update
-                          sudo apt-get install libpcap-dev -y
                       build: |-
                           set -e &&
+                          sudo apt-get update -y &&
+                          sudo apt-get install libpcap-dev -y &&
                           yarn build --target aarch64-unknown-linux-gnu &&
                           aarch64-unknown-linux-gnu-strip *.node
                     - host: ubuntu-latest
@@ -80,11 +80,10 @@ jobs:
                       architecture: x64
                       target: aarch64-unknown-linux-musl
                       docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-alpine
-                      setup: |
-                          sudo apt-get update
-                          sudo apt-get install libpcap-dev -y
                       build: |-
                           set -e &&
+                          sudo apt-get update -y &&
+                          sudo apt-get install libpcap-dev -y &&
                           rustup target add aarch64-unknown-linux-musl &&
                           yarn build --target aarch64-unknown-linux-musl &&
                           /aarch64-linux-musl-cross/bin/aarch64-linux-musl-strip *.node
